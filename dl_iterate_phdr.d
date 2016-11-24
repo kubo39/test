@@ -1,5 +1,8 @@
+// core.sys.linux.link.dl_iterate_phdr_cb is not visible, this is work-around.
+
 import std.stdio;
 import core.sys.linux.elf;
+
 
 version(CRuntime_Glibc):
 version(linux):
