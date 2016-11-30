@@ -1,0 +1,6 @@
+[package]
+name = "unittest"
+version = "0.1.0"
+authors = ["Hiroki Noda <hiroki.noda@mixi.co.jp>"]
+
+[dependencies]
