@@ -1,0 +1,12 @@
+[package]
+name = "asm"
+version = "0.1.0"
+authors = ["Hiroki Noda <kubo39@gmail.com>"]
+build = "build.rs"
+
+[[bin]]
+name = "test"
+path = "main.rs"
+
+[build-dependencies]
+gcc = "*"
