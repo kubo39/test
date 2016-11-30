@@ -1,0 +1,7 @@
+[package]
+name = "fringe"
+version = "0.1.0"
+authors = ["Hiroki Noda <kubo39@gmail.com>"]
+
+[dependencies]
+fringe = "1.2.1"
