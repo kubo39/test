@@ -1,0 +1,7 @@
+.dub
+docs.json
+__dummy.html
+*.[oa]
+*.obj
+__test__*__
+asm

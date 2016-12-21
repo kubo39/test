@@ -1,0 +1,12 @@
+{
+	"name": "asm",
+	"authors": [
+		"hiroki.noda"
+	],
+	"license": "NYSL",
+    "lflags": ["-L./"],
+    "libs": ["adder"],
+    "sourcePaths": ["."],
+    "mainSourceFile": "app.d",
+    "preBuildCommands": ["nasm -f elf64 -o libadder.a adder.asm"]
+}
