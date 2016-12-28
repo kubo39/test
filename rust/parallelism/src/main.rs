@@ -4,8 +4,8 @@ extern crate approx;
 
 use rayon::prelude::*;
 
-static N: usize = 1_000_000 - 1;
-static DELTA: f64 = 1.0f64 / 1_000_000.0f64;
+const N: usize = 1_000_000 - 1;
+const DELTA: f64 = 1.0f64 / N as f64;
 
 fn get_term(i: usize) -> f64 {
     let x = (i as f64 - 0.5f64) * DELTA;
