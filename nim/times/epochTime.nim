@@ -1,0 +1,3 @@
+import times
+
+discard epochTime()
