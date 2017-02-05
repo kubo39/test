@@ -55,7 +55,13 @@ actor Main
         env.out.print(japanese.codepoints().string())  // => 3
 ```
 
-### 連想配列
+## 標準ライブラリ
+
+### collections
+
+連想配列やリングバッファなどのデータ構造がある。
+
+#### 連想配列(ハッシュマップ)
 
 連想配列型は `collections` パッケージで `Map[K, V]` として表現される。ここでは `HashMap[K, V]` をみる。
 
@@ -109,8 +115,9 @@ HashMapの実装方法はオープンアドレス法。
     (idx_del, false)
 ```
 
+#### ソート
 
-## 標準ライブラリ
+ソートのアルゴリズムはDual-pivot Quicksortアルゴリズム。このアルゴリズムはJavaのプリミティブ型配列などでも使われている。
 
 ### itertools
 
