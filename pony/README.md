@@ -6,7 +6,7 @@
 
 ## 言語機能
 
-組み込み型
+- 組み込み型
 
 ### 動的配列
 
@@ -35,7 +35,7 @@ actor Main
 
 文字列型は `String` として表現される。
 
-```
+```pony
 actor Main
     new create(env: Env) =>
         let str = "string"
@@ -56,6 +56,22 @@ actor Main
 ```
 
 ## 標準ライブラリ
+
+### itertools
+
+iteratorに対するmapやfilterといった操作群はこのパッケージにある。Haskellよろしく遅延評価になっている。
+
+```pony
+use "itertools"
+
+actor Main
+    new create(env: Env) =>
+        Iter[I64]([as I64: 1, 2, 3, 4, 5].values())
+            .map[I64]({(x: I64): I64 => x + 1 })
+            .filter({(x: I64): Bool => (x % 2) == 0 })
+            .map[None]({(x: I64)(env) => env.out.print(x.string()) })
+            .run()  // ここで正則評価
+```
 
 ## その他
 
