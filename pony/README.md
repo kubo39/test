@@ -100,7 +100,8 @@ HashMapの実装方法はオープンアドレス法。
           end
         end
 
-        // よくわからない
+        // ?? probing
+        //  +1, +3, +6, +10, ...
         idx = (h + ((i + (i * i)) / 2)) and mask
       end
     end
