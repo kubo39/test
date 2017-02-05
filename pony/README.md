@@ -55,6 +55,60 @@ actor Main
         env.out.print(japanese.codepoints().string())  // => 3
 ```
 
+### 連想配列
+
+連想配列型は `collections` パッケージで `Map[K, V]` として表現される。ここでは `HashMap[K, V]` をみる。
+
+HashMapの実装方法はオープンアドレス法。
+
+```pony
+  fun _search(key: box->K!): (USize, Bool) =>
+    """
+    Return a slot number and whether or not it's currently occupied.
+    """
+    var idx_del = _array.size()
+    let mask = idx_del - 1
+    let h = H.hash(key).usize()  // キーのハッシュ値を取得
+    var idx = h and mask  // マスクした値を最終的な値とする(値域)
+
+    try
+      // 試行回数は配列の長さを超えない
+      for i in Range(0, _array.size()) do
+        // バケットを取得
+        let entry = _array(idx)
+
+        // バケットにエントリがある場合
+        match entry
+        | (let k: this->K!, _) =>
+          // キーが一致した場合
+          if H.eq(k, key) then
+            return (idx, true)  // 見つかった場所と見つかったという情報を返す
+          end
+        // 空だった場合
+        | _MapEmpty =>
+          // 事前に削除フラグの場所を通った場合にidx_delを再利用
+          //  (削除フラグを残してしまうとホップ回数が無駄)
+          if idx_del <= mask then
+            return (idx_del, false)
+          else
+            return (idx, false)
+          end
+        // 削除フラグが立っていた場合
+        | _MapDeleted =>
+          if idx_del > mask then
+            idx_del = idx
+          end
+        end
+
+        // よくわからない
+        idx = (h + ((i + (i * i)) / 2)) and mask
+      end
+    end
+
+    (idx_del, false)
+```
+
+
 ## 標準ライブラリ
 
 ### itertools
