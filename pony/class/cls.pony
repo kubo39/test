@@ -1,6 +1,6 @@
 class C
     let name: String
-    new create(name': String) =>
+    new create(name': String) =>  // コンストラクタ
         name = name'
 
     fun show(env: Env) =>
@@ -8,5 +8,5 @@ class C
 
 actor Main
     new create(env: Env) =>
-        let c = C("class C")
+        let c = C("class C")  // コンストラクタ呼び出しはPython風
         c.show(env)
