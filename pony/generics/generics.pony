@@ -3,6 +3,8 @@ actor Main
         let foo = Foo[ISize](42)
         env.out.print(foo.get().string())
 
+// 型パラメータ
+//   [型名: 制約 参照特性] のように書く.
 class Foo[A: Any val]
     var _c: A
     new create(c: A) =>
