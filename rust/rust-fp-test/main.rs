@@ -11,5 +11,5 @@ extern "C" {
 fn main() {
     // 静的に生成されるstructへのポインタを構造体として扱う
     let mut ptr = unsafe { getInstance() };
-    unsafe { ((&*ptr).init)(ptr) };
+    unsafe { ((*ptr).init)(ptr) };
 }
