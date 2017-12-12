@@ -1,0 +1,13 @@
+{
+	"name": "mdeditor",
+	"authors": [
+		"kubo39"
+	],
+    "dependencies": {
+        "gtk-d:gtkd": "3.7.2",
+        "gtk-d:sv": "3.7.2",
+        "dmarkdown": "0.2.2"
+    },
+	"description": "A minimal D application.",
+	"license": "proprietary"
+}

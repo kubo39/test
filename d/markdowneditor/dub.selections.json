@@ -1,0 +1,7 @@
+{
+	"fileVersion": 1,
+	"versions": {
+		"dmarkdown": "0.2.2",
+		"gtk-d": "3.7.2"
+	}
+}
