@@ -2,7 +2,18 @@
 
 ## 言語
 
-コンパイラもランタイムもCで書かれている。makeだけでビルド可能。現時点の最新は `0.10.0-ce25599ab`。
+コンパイラもランタイムもCで書かれている。makeだけでビルド可能。
+
+試したバージョンは
+
+```console
+$ ./build/release/ponyc --version
+0.24.4-bdf48707 [release]
+compiled with: llvm 3.9.1 -- cc (Ubuntu 7.3.0-16ubuntu3) 7.3.0
+Defaults: pic=true ssl=openssl_1.1.0
+```
+
+ponycはディレクトリに対してかける必要がある。
 
 ## 言語機能
 
@@ -15,17 +26,17 @@
 ```pony
 actor Main
     new create(env: Env) =>
-        let arr: Array[I32] = [1, 2, 3]
+        let arr: Array[I32] = [1; 2; 3]
 
         // popは例外を返しうる操作なのでtryで囲む
         try
             // popは値を返す
-            let elem = arr.pop()  // => [1, 2]
+            // 要素へのアクセスは `?' を使う
+            let elem = arr.pop()?  // => [1; 2]
         end
-        arr.push(4)  // => [1, 2. 4]
+        arr.push(4)  // => [1; 2; 4]
 
         // valuesはiteratorを返す
-        // iteratorを実装していればfor式によるループができる
         for i in arr.values() do
             env.out.print(i.string()) // 明示的に文字列変換
         end
@@ -41,7 +52,7 @@ actor Main
         let str = "string"
 
         try
-            let nth = str.find("ring")  // #=> 2
+            let nth = str.find("ring")?  // #=> 2
             env.out.print("\"string\".find(\"ring\"): " + nth.string())
         end
 
@@ -128,7 +139,7 @@ use "itertools"
 
 actor Main
     new create(env: Env) =>
-        Iter[I64]([as I64: 1, 2, 3, 4, 5].values())
+        Iter[I64]([as I64: 1; 2; 3; 4; 5].values())
             .map[I64]({(x: I64): I64 => x + 1 })
             .filter({(x: I64): Bool => (x % 2) == 0 })
             .map[None]({(x: I64)(env) => env.out.print(x.string()) })

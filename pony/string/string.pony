@@ -3,7 +3,7 @@ actor Main
         let str = "string"
 
         try
-            let nth = str.find("ring")  // #=> 2
+            let nth = str.find("ring")?  // #=> 2
             env.out.print("\"string\".find(\"ring\"): " + nth.string())
         end
 
