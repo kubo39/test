@@ -92,7 +92,7 @@ HashMapの実装方法はオープンアドレス法。
       // 試行回数は配列の長さを超えない
       for i in Range(0, _array.size()) do
         // バケットを取得
-        let entry = _array(idx)
+        let entry = _array(idx)?
 
         // バケットにエントリがある場合
         match entry
