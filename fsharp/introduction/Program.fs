@@ -73,6 +73,32 @@ let parallel_and_asynchronous_programming _ =
         |> Async.RunSynchronously
     printfn "The fibonacci numbers are %A" fibs
 
+// 1.1.9 object oriented programming and code organization
+type CharMapEncoder (symbols: seq<char*char>) =
+    let swap (x, y) = (y, x) in
+    let fwd = symbols |> Map.ofSeq
+    let bwd = symbols |> Seq.map swap |> Map.ofSeq
+
+    let encode (s:string) =
+        String[| for c in s -> if fwd.ContainsKey(c) then fwd.[c] else c|]
+        in
+    let decode (s:string) =
+        String[| for c in s -> if bwd.ContainsKey(c) then bwd.[c] else c|]
+        in
+
+    member x.Encode(s) = encode s
+
+    member x.Decode(s) = decode s
+
+let object_oriented_programming _ =
+    let rot13 (c:char) =
+        char(int 'a' + ((int c - int 'a' + 13) % 26))
+        in
+    let encoder = CharMapEncoder([ for c in 'a' .. 'z' -> (c, rot13 c)])
+
+    printfn "%A" ("F# is fun!" |> encoder.Encode)
+    printfn "%A" ("F# is fun!" |> encoder.Encode |> encoder.Decode)
+
 [<EntryPoint>]
 let main argv =
     // 1.1.1 lightweight syntax
@@ -92,5 +118,8 @@ let main argv =
 
     // 1.1.7 parallel and asynchronous programming
     parallel_and_asynchronous_programming ()
+
+    // 1.1.9 object oriented programming and code organization
+    object_oriented_programming ()
 
     0 // return an integer exit code
